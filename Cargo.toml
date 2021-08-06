@@ -1,12 +1,12 @@
 [package]
 name = "bulletproofs"
 # Before doing a release:
-# - update version field 
+# - update version field
 # - update html_root_url
 # - ensure yoloproofs was disabled in an atomic (revertable) commit
 # - update CHANGELOG
 version = "2.0.1"
-authors = ["Cathie Yun <cathieyun@gmail.com>", 
+authors = ["Cathie Yun <cathieyun@gmail.com>",
            "Henry de Valence <hdevalence@hdevalence.ca>",
            "Oleg Andreev <oleganza@gmail.com>"]
 readme = "README.md"
@@ -18,10 +18,10 @@ description = "A pure-Rust implementation of Bulletproofs using Ristretto"
 edition = "2018"
 
 [dependencies]
-curve25519-dalek = { version = "2", default-features = false, features = [ "alloc", "nightly"] }
+curve25519-dalek = { version = "3.2", default-features = false, features = [ "alloc", "nightly"] }
 subtle = { version = "2", default-features = false }
-sha3 = { version = "0.8", default-features = false }
-digest = { version = "0.8", default-features = false }
+sha3 = { version = "0.9", default-features = false }
+digest = { version = "0.9", default-features = false }
 rand_core = { version = "0.5", default-features = false, features = ["alloc"] }
 rand = { version = "0.7", default-features = false }
 byteorder = { version = "1", default-features = false }
@@ -42,15 +42,15 @@ default = ["std", "avx2_backend", "zeroize"]
 
 u64_backend = ["curve25519-dalek/u64_backend", ]
 avx2_backend = ["curve25519-dalek/avx2_backend"]
-u32_backend = ["curve25519-dalek/u32_backend"] 
+u32_backend = ["curve25519-dalek/u32_backend"]
 # yoloproofs = []
 
 std = [
 	"serde",
 	"serde_derive",
 	"curve25519-dalek/serde",
-	"rand/std", 
-	"thiserror", 
+	"rand/std",
+	"thiserror",
 ]
 
 [[test]]
