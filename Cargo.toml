@@ -17,6 +17,9 @@ keywords = ["cryptography", "crypto", "ristretto", "zero-knowledge", "bulletproo
 description = "A pure-Rust implementation of Bulletproofs using Ristretto"
 edition = "2018"
 
+[patch.crates-io]
+curve25519-dalek = { git = "https://github.com/PolymathNetwork/curve25519-dalek", branch = "master" }
+
 [dependencies]
 curve25519-dalek = { version = "3.2", default-features = false, features = [ "alloc", "nightly"] }
 subtle = { version = "2", default-features = false }
@@ -50,6 +53,7 @@ std = [
 	"serde_derive",
 	"curve25519-dalek/serde",
 	"rand/std",
+	"rand/std_rng",
 	"thiserror",
 ]
 
