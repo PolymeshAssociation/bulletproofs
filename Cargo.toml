@@ -17,12 +17,9 @@ keywords = ["cryptography", "crypto", "ristretto", "zero-knowledge", "bulletproo
 description = "A pure-Rust implementation of Bulletproofs using Ristretto"
 edition = "2018"
 
-[patch.crates-io]
-curve25519-dalek = { git = "https://github.com/PolymathNetwork/curve25519-dalek", branch = "master" }
-
 [dependencies]
-curve25519-dalek = { version = "3.2", default-features = false, features = [ "alloc", "nightly"] }
-subtle = { version = "2", default-features = false }
+curve25519-dalek = { package = "curve25519-dalek-ng", version = "4", default-features = false, features = ["alloc", "nightly"] }
+subtle = { package = "subtle-ng", version = "2.5", default-features = false }
 sha3 = { version = "0.9", default-features = false }
 digest = { version = "0.9", default-features = false }
 rand_core = { version = "0.6", default-features = false, features = ["alloc"] }
