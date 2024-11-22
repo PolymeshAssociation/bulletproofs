@@ -17,34 +17,39 @@ description = "A pure-Rust implementation of Bulletproofs using Ristretto"
 edition = "2018"
 
 [dependencies]
-curve25519-dalek = { version = "4.1.1", features = ["digest", "group", "rand_core", "serde"] }
+curve25519-dalek = { version = "4.1.1", features = ["digest", "group", "rand_core"] }
 group = { version = "0.13", default-features = false }
-subtle = { version = "2.5", default-features = false }
+subtle = { version = "2.4", default-features = false }
 sha3 = { version = "0.10", default-features = false }
 digest = { version = "0.10", default-features = false }
 rand_core = { version = "0.6", default-features = false, features = ["alloc"] }
 rand = { version = "0.8", default-features = false, optional = true }
 byteorder = { version = "1", default-features = false }
-serde = { version = "1", default-features = false, features = ["alloc"] }
-serde_derive = { version = "1", default-features = false }
+serde = { version = "1", default-features = false, features = ["alloc"], optional = true }
+serde_derive = { version = "1", default-features = false, optional = true }
 thiserror = { version = "1", optional = true }
 merlin = { version = "3", default-features = false }
-clear_on_drop = { version = "0.2", default-features = false }
+clear_on_drop = { version = "0.2", default-features = false, features = ["no_cc"] }
 
 [dev-dependencies]
 hex = "0.3"
 criterion = "0.3"
 bincode = "1"
 rand_chacha = "0.3"
-curve25519-dalek = { version = "4.1.1", features = ["digest", "group", "legacy_compatibility", "rand_core", "serde"] }
+curve25519-dalek = { version = "4.1.1", features = ["digest", "group", "legacy_compatibility", "rand_core"] }
 
 [features]
-default = ["std"]
+default = ["std", "serde"]
 yoloproofs = []
 std = ["rand", "rand/std", "rand/std_rng", "thiserror"]
 nightly = ["subtle/nightly", "clear_on_drop/nightly"]
 docs = ["nightly"]
 
+serde = [
+  "dep:serde",
+  "serde_derive",
+  "curve25519-dalek/serde",
+]
 
 [[test]]
 name = "range_proof"

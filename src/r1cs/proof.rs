@@ -9,7 +9,9 @@ use crate::errors::R1CSError;
 use crate::inner_product_proof::InnerProductProof;
 use crate::util;
 
+#[cfg(feature = "serde")]
 use serde::de::Visitor;
+#[cfg(feature = "serde")]
 use serde::{self, Deserialize, Deserializer, Serialize, Serializer};
 
 const ONE_PHASE_COMMITMENTS: u8 = 0;
@@ -207,6 +209,7 @@ impl R1CSProof {
     }
 }
 
+#[cfg(feature = "serde")]
 impl Serialize for R1CSProof {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
@@ -216,6 +219,7 @@ impl Serialize for R1CSProof {
     }
 }
 
+#[cfg(feature = "serde")]
 impl<'de> Deserialize<'de> for R1CSProof {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
